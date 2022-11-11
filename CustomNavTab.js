@@ -23,7 +23,7 @@ const CustomNavTab = () => {
         options={{tabBarLabel:'Home',
           tabBarIcon: (tabInfo)=> {
             return (
-              <MaterialIcons name="home" size={30} color={tabInfo.focused ? "#1DA1F2" : "#8e8e93"} />
+              <MaterialIcons name="home" size={30} color={tabInfo.focused ? "#FF7518" : "#8e8e93"} />
             );
           },}}
         />
@@ -35,7 +35,7 @@ const CustomNavTab = () => {
           tabBarLabel: 'Chat',
           tabBarIcon: (tabInfo)=>{
             return (
-              <MaterialCommunityIcons name="chat" size={30} color={tabInfo.focused ? "#1DA1F2" : "#8e8e93"} />
+              <MaterialCommunityIcons name="chat" size={30} color={tabInfo.focused ? "#FF7518" : "#8e8e93"} />
             );
           }
         }}
@@ -49,7 +49,7 @@ const CustomNavTab = () => {
           
           tabBarIcon: (tabInfo)=>{
             return (
-              <MaterialCommunityIcons name="calendar" size={30} color={tabInfo.focused ? "#1DA1F2" : "#8e8e93"}  />
+              <MaterialCommunityIcons name="calendar" size={30} color={tabInfo.focused ? "#FF7518" : "#8e8e93"}  />
             );
           }
         }}

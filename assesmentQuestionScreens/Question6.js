@@ -15,8 +15,8 @@ export default function Question6({navigation}) {
 
 return (
     <View style={styles.container}>
-        <Text style={styles.text}>Are you having thoughts of killing or harming other people,
-         or have you had thoughts of killing or harming other people in the past month?</Text>
+        <Text style={styles.text}>Are you having thoughts of killing or harming people,
+         or have you had thoughts of killing or harming people in the past month?</Text>
         <TextInput style={[styles.textInput1, styles.TextInputFontStyle]}
         onChangeText={(answer)=>setAnswer(answer)}
         value={answer}
@@ -26,9 +26,6 @@ return (
         onPress={f6}>
           <Text style={styles.next}>Next</Text>
         </Pressable>
-
-    <ProgressDots></ProgressDots>
-        
     
     </View>
 )
@@ -37,67 +34,44 @@ return (
 
 
 const styles = StyleSheet.create({
-    textInput1: {
-    
-        marginStart: 15,
-        marginEnd: 15,
-        marginTop: 20,
-        borderRadius: 1,
-        backgroundColor: '#1DA1F2',
-        borderWidth: 30,
-        borderColor:'#1DA1F2',
-    
-      },
-      TextInputFontStyle: {
-        color: 'white',
-        fontSize:18
-      },
+  textInput1: {
+  
+      marginStart: 15,
+      marginEnd: 15,
+      marginTop: 20,
+      borderRadius: 1,
+      borderRadius: 11,
+      borderWidth: 1,
+      borderColor:"#FF7518",
+      
+    },
+    TextInputFontStyle: {
+      color: "#FF7518",
+      fontSize:16,
+      padding: 4,
+    },
 
-      next:{
-        color: 'white',
-        fontSize: 18,
-      },
+    next:{
+      color: 'white',
+      fontSize: 18,
+      padding: 1
+    },
 
-      text:{
-        marginTop: 40,
-        marginStart: 14,
-        marginStart: 20,
-        fontSize: 16,
-      },
-      dots:{
-        backgroundColor: '#1DA1F2',
-        height: 18,
-        width: 18,
-        borderRadius: 9,
-        marginStart: 36,
-        position: 'absolute',
-        bottom:36
-      },
-      dots1:{
-        backgroundColor: '#D3D3D3',
-        height: 18,
-        width: 18,
-        borderRadius: 9,
-        position: 'absolute',
-        bottom:36
-      },
-      container1:{
-        flex:1,
-        flexDirection: 'row',
-        
-      },
-      container:{
-        flex:1,
-      },
+    text:{
+      marginTop: 40,
+      marginStart: 14,
+      marginStart: 20,
+      fontSize: 16,
+   
+    },
 
-      button:{
-        backgroundColor: '#1DA1F2',
-        height: 40,
-        width:70,
-        borderRadius: 11,
-        margin: 50,
-        padding: 8,
-      }
+    button:{
+      backgroundColor: "#FF7518",
+      height: 40,
+      width:70,
+      borderRadius: 11,
+      margin: 50,
+      padding: 8,
+    }
 })
-
 

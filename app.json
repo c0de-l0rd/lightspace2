@@ -24,13 +24,21 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.glichy.Lightspace"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "packagerOpts": {
-      "sourceExts": ["cjs"]
+      "sourceExts": [
+        "cjs"
+      ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bd55cd5b-f0e1-4f2e-8996-1e0a64115400"
+      }
     }
   }
 }

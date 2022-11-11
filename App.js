@@ -20,7 +20,7 @@ return (
  
 
    <Stack.Navigator>
-     <Stack.Screen name='Login' component={LoginScreen}/>
+     <Stack.Screen name='Login' options={{headerShown: false}} component={LoginScreen}/>
      <Stack.Screen name='Register' component={RegisterScreen}/>
      <Stack.Screen name='Tab' options={{headerShown: false}} component={CustomNavTab}/>
      <Stack.Screen name='Questions' options={{headerShown: false}} component={QuestionScreensStackNavigator}/>

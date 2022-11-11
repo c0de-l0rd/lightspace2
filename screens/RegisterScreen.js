@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
-import { View, StyleSheet,Pressable, Text } from 'react-native'
-import { Input, Button } from 'react-native-elements';
+import { View, StyleSheet,Pressable, TextInput, Text, Image } from 'react-native'
+import {  Button } from 'react-native-elements';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {getDatabase, get, ref, set, onValue, push, off, update} from 'firebase/database';
+import Chat from './Chat';
+import Login from './Login';
+import Users from './Users';
+
 
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [avatar, setAvatar] = useState('');
+    const [myData, setMyData] = useState(null);
+    const [selectedUser, setSelectedUser] = useState(null);
 
     const register = ({navigation}) => {
         createUserWithEmailAndPassword(auth, email, password)
@@ -22,7 +29,7 @@ const Register = () => {
               })
               .then(() => {
                   alert('Registered, please login.');
-                  navigation.navigate('Login');
+                //   navigation.navigate('Login');
               })
               .catch((error) => {
                   alert(error.message);
@@ -33,39 +40,88 @@ const Register = () => {
               const errorMessage = error.message;
               alert(errorMessage);
           });
-      }
+
+      };
+
+      
+
+
+      const createChatUser = async () => {
+        try {
+          const database = getDatabase();
+          //first check if the user registered before
+
+          const findUser = async name => {
+            const database = getDatabase();
+        
+            const mySnapshot = await get(ref(database, `users/${name}`));
+        
+            return mySnapshot.val();
+          };
+    
+          const user = await findUser(name);
+    
+          //create a new user if not registered
+          if (user) {
+            setMyData(user);
+          } else {
+            const newUserObj = {
+              username: name,
+              avatar: 'https://i.pravatar.cc/150?u=' + Date.now(),
+            };
+    
+            set(ref(database, `users/${name}`), newUserObj);
+            setMyData(newUserObj);
+          }
+
+        } catch (error) {
+            console.error(error);
+          }
+
+          
+
+        }
+
+       
 
     return (
         <View style={styles.container}>
-            <Input
+
+<Image style={styles.logo} source={require('../images/logs.png')}></Image>
+
+            <TextInput style={styles.textInput}
                 placeholder='Enter your name'
+                placeholderTextColor="#FF7518"
                 label='Name'
                 value={name}
                 onChangeText={text => setName(text)}
             />
-            <Input
+            <TextInput style={styles.textInput}
                 placeholder='Enter your email'
+                placeholderTextColor="#FF7518"
                 label='Email'
                 value={email}
                 onChangeText={text => setEmail(text)}
             />
-            <Input
+            <TextInput style={styles.textInput}
                 placeholder='Enter your password'
+                placeholderTextColor="#FF7518"
                 label='Password'
                 value={password} onChangeText={text => setPassword(text)}
                 secureTextEntry
             />
-            <Input
+            {/* <TextInput style={styles.textInput}
                 placeholder='Enter your image url'
                 label='Profile Picture'
                 value = {avatar}
                 onChangeText={text => setAvatar(text)}
-            />
+            /> */}
             <Pressable style={({pressed})=> [{
                 borderColor: pressed ? '#1DA1F2' : '#f3f6f4'
             }, styles.button
         ]} 
-        onPressIn={register} >
+        onPressIn={register}
+        onPress={createChatUser}>
                 <Text style={styles.text}>Sign Up</Text>
             </Pressable>
         </View>
@@ -76,16 +132,15 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         padding: 10,
-        marginTop: 100,
+        marginTop: 40,
     },
     button: {
-        width: 280,
+        width: 100,
         height: 38,
         marginTop: 18,
-        backgroundColor: '#1DA1F2',
-        borderRadius: 11,
+        backgroundColor: "#FF7518",
+        borderRadius: 30,
         borderWidth: 2,
-        
     },
     text:{
         
@@ -94,6 +149,21 @@ const styles = StyleSheet.create({
         padding: 4,
         alignSelf: 'center',
         
+    },
+    textInput:{
+        borderColor: "#FF7518",
+        borderWidth: 1,
+        borderRadius: 30,
+        width: 270,
+        height: 40,
+        margin: 10,
+        padding: 10,
+        margin: 15,
+    },
+    logo:{
+        width:340,
+        height:130,
+        marginBottom: 30,
     }
 });
 

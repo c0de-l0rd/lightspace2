@@ -2,29 +2,13 @@ import { StyleSheet, Text, Pressable, Image,ScrollView } from 'react-native'
 import React from 'react'
 
 
-const HomeScreen = ({navigation}) => {
+const physicalTherapyTypes = ({navigation}) => {
   
   
   return (
     <ScrollView>
 
     
-      <Pressable
-        style={({pressed}) => [
-          {
-      
-            backgroundColor: pressed ? '#fff2d9' : '#fffaf0'
-            
-          },
-          styles.card,
-        ]}
-
-      onPress={() => navigation.navigate('description')}
-      
-      > 
-<Image style={styles.image2} source={require('../online-therapy3.jpg')}></Image>
-<Text style={styles.font2}> Online therapy</Text>
-      </Pressable>
 
       <Pressable
       style={({pressed}) => [
@@ -35,10 +19,10 @@ const HomeScreen = ({navigation}) => {
         },
         styles.card,
       ]}
-      onPress={() => navigation.navigate('description')}
+      onPress={() => navigation.navigate('locations')}
       >
-        <Image style={styles.image} source={require('../physical-therapy.jpg')}></Image>
-        <Text style={styles.font}> Physical therapy </Text>
+        <Image style={styles.image} source={require('../images/Beer.jpg')}></Image>
+        <Text style={styles.font}> Alchoholics Anonnymous </Text>
       </Pressable>
 
       <Pressable
@@ -50,16 +34,16 @@ const HomeScreen = ({navigation}) => {
           },
           styles.card,
         ]}
-      onPress={() => navigation.navigate('groupTherapy')}
+      onPress={() => navigation.navigate('locations')}
       >
-        <Image style={styles.image} source={require('../group-therapy.jpg')}></Image>
-        <Text style={styles.font}> Group physical therapy</Text>
+        <Image style={styles.image} source={require('../images/gbv.jpg')}></Image>
+        <Text style={styles.font}> Gender Based Violence</Text>
       </Pressable>
       </ScrollView>
   )
 }
 
-export default HomeScreen
+export default physicalTherapyTypes;
 
 const styles = StyleSheet.create({
     container: {

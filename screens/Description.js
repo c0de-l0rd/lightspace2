@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Pressable, Alert } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import database from '@react-native-firebase/database'
 import { getDatabase, ref, push, set } from "firebase/database";
@@ -23,7 +23,26 @@ set(newPostRef, {
     description: therapyType,
     user: myUserId,
 });
+
+alert();
 }
+
+const alert = () =>
+    Alert.alert(
+      "Request",
+      "you are requesting for a therapy session, we will connect "+
+       "you to a therapist, you will receive an email when we connect you to them and will be able "+ 
+       "to communicate with the therapist through chat.",
+     
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    )
   return (
     <View>
       <TextInput style={[styles.textInput1, styles.fontStyle]}

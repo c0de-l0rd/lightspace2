@@ -15,13 +15,8 @@ const QuestionAnswers = {
 
 }
 
-const sharedVars = (props) => {
-    QuestionAnswers[`${props.values.Q}`] = answer;
-    console.log(QuestionAnswers[`${props.values.Q}`]);
-    navigation.navigate(`${props.values.navigate}`);
-    }
 
 
-export {sharedVars, QuestionAnswers}
+export { QuestionAnswers}
 
 const styles = StyleSheet.create({})

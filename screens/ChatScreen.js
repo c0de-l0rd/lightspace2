@@ -5,6 +5,7 @@ import { auth, db } from '../firebase';
 import { signOut } from 'firebase/auth';
 import { collection, addDoc, getDocs, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { GiftedChat } from 'react-native-gifted-chat';
+import ChatApp from './ChatApp'
 
 const Chat = ({ navigation }) => {
     const [messages, setMessages] = useState([]);
@@ -62,16 +63,7 @@ const Chat = ({ navigation }) => {
     }, []);
 
     return (
-        <GiftedChat
-            messages={messages}
-            showAvatarForEveryMessage={true}
-            onSend={messages => onSend(messages)}
-            user={{
-                _id: auth?.currentUser?.email,
-                name: auth?.currentUser?.displayName,
-                avatar: auth?.currentUser?.photoURL
-            }}
-        />
+        <ChatApp/>
     );
 }
 
