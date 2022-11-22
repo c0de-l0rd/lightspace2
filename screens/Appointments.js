@@ -1,9 +1,11 @@
+import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, FlatList, Text, StatusBar, SafeAreaView, Alert} from 'react-native'
 import DatePicker from 'react-native-date-picker'
 import { MaterialIcons } from '@expo/vector-icons';
 import moment from 'moment'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import {
   MenuProvider,
   Menu,
@@ -48,6 +50,11 @@ const Item = ({  item, onPress, backgroundColor, textColor }) => (
 );
 
 
+
+
+
+
+
 const Appointments = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [date, setDate] = useState(new Date())
@@ -83,6 +90,7 @@ const Appointments = () => {
   //     ]
   //   ))()
 
+  
 
   const renderItem = ({ item }) => {
  

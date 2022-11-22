@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View, TextInput, Pressable, Alert } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import database from '@react-native-firebase/database'
-import { getDatabase, ref, push, set } from "firebase/database";
+import { getDatabase, ref, push, set, child, get, remove } from "firebase/database";
 import { getAuth } from "firebase/auth";
+import { TherapyRequest } from '../assesmentQuestionScreens/sharedVars';
+import { UserName } from '../assesmentQuestionScreens/sharedVars';
 
 export default function Description() {
 
@@ -16,65 +18,122 @@ export default function Description() {
 const db = getDatabase();
 const auth = getAuth();
 const myUserId = auth.currentUser.uid;
-const postListRef = ref(db);
-const newPostRef = push(postListRef);
-set(newPostRef, {
-    type: description,
-    description: therapyType,
-    user: myUserId,
+const dbRef = ref(db);
+TherapyRequest['userEmail']  = auth.currentUser.email;
+
+get(child(dbRef, `therapyRequests/${myUserId}`)).then((snapshot) => {
+  if (snapshot.exists()) {
+    Alert.alert(
+      "Double Request",
+      "You have already requested for a therapist. "
+       ,
+     
+      [{ text: "OK" }]
+    )
+  } else {
+     
+    set(ref(db, 'therapyRequests/' + myUserId), {
+      TherapyRequest: TherapyRequest,});
+      
+     alert();
+  }
+}).catch((error) => {
+  console.error(error);
 });
 
-alert();
+
 }
+
+const requestTherapist = () => {
+  TherapyRequest['description'] = description;
+  console.log(TherapyRequest);
+  writeUserData();
+  }
 
 const alert = () =>
     Alert.alert(
       "Request",
-      "you are requesting for a therapy session, we will connect "+
-       "you to a therapist, you will receive an email when we connect you to them and will be able "+ 
+      "you have requested for a therapy session, we will connect "+
+       "you to a therapist, you will receive an email when you are connected and will be able "+ 
        "to communicate with the therapist through chat.",
      
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
-      ]
+      [{ text: "OK" }]
     )
+
+    //cancel a therapist request if it has been made.
+
+    function deleteData()
+  {
+// Create a new post reference with an auto-generated id
+const db = getDatabase();
+const auth = getAuth();
+const myUserId = auth.currentUser.uid;
+const dbRef = ref(db);
+TherapyRequest['userEmail']  = auth.currentUser.email;
+
+get(child(dbRef, `therapyRequests/${myUserId}`)).then((snapshot) => {
+  if (snapshot.exists()) {
+    const del = ref(db, `therapyRequests/${myUserId}`)
+    remove(del)
+
+  } else {
+    Alert.alert(
+      "No Requests",
+      "You have not made any request for a therapist. "
+       ,
+     
+      [{ text: "OK" }]
+    )
+    
+  }
+}).catch((error) => {
+  console.error(error);
+});
+
+
+}
+
+    const clearInput = () => setDescription('');
+
   return (
     <View>
-      <TextInput style={[styles.textInput1, styles.fontStyle]}
-      onChangeText={setTherapyType}
-      value={therapyType}
-      placeholder="why this type of therapy?"
-      multiline= {true}
-      />
-       <TextInput style={[styles.textInput1, styles.fontStyle]}
-      onChangeText={setDescription}
+      <TextInput style={[styles.textInput1, styles.TextInputFontStyle]}
+      onChangeText={(description)=>setDescription(description)}
       value={description}
-      placeholder="tell us how you feel."
+      placeholder="why have you chosen this type of therapy?"
       multiline= {true}
       />
-
-
       
 
 <Pressable
          style={({pressed}) => [
           {
       
-              borderColor: pressed ? 'black' : '#1DA1F2'
+              borderColor: pressed ? '#1DA1F2' : '#FF7518'
             
           },
           styles.button,
         ]}
-        onPress={writeUserData}>
+        onPressIn={requestTherapist}
+        onPress={clearInput}>
         <Text style={styles.fontStyle}>Request therapist</Text>
       </Pressable>
+
+
+      <Pressable
+         style={({pressed}) => [
+          {
+      
+              borderColor: pressed ? '#1DA1F2' : '#FF7518'
+            
+          },
+          styles.button2,
+        ]}
+        onPress={deleteData}>
+        <Text style={styles.fontStyle}>Cancel Request</Text>
+      </Pressable>
        
-    
+
     </View>
   )
 }
@@ -86,29 +145,46 @@ const styles = StyleSheet.create({
     
     marginStart: 15,
     marginEnd: 15,
-    marginTop: 50,
+    marginTop: 20,
     borderRadius: 1,
-    backgroundColor: '#1DA1F2',
-    borderWidth: 30,
-    borderColor:'#1DA1F2',
+    borderRadius: 11,
+    borderWidth: 1,
+    borderColor:"#FF7518",
 
   },
   fontStyle: {
     color: 'white',
     fontSize:18
   },
+  TextInputFontStyle: {
+    color: "#FF7518",
+    fontSize:16,
+    padding: 4,
+  },
   button: {
-    height: 55,
-    backgroundColor: '#010117',
+    height: 40,
+    backgroundColor: '#FF7518',
     marginStart: 80,
     marginEnd: 80,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 11,
+    borderRadius: 36,
     marginTop: 60,
     borderWidth: 2,
-    
-    elevation: 8,
+    elevation: 3,
+  },
+  button2: {
+    height: 40,
+    backgroundColor: '#FF7518',
+    marginStart: 80,
+    marginEnd: 80,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 36,
+    marginTop: 25,
+    borderWidth: 2,
+    elevation: 3,
   }
 })

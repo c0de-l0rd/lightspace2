@@ -5,24 +5,35 @@ import { QuestionAnswers } from './sharedVars'
 
 export default function Question1({navigation}) {
 
-    const [answer, setAnswer] = useState(null)
+    const [age, setAge] = useState(null)
+    const [sex, setSex] = useState(null)
 
   
    const f1 = () => {
-    QuestionAnswers['Q1'] = answer;
-    console.log(QuestionAnswers['Q1']);
-    navigation.navigate('3 of 11');
+    QuestionAnswers['age'] = age;
+    QuestionAnswers['sex'] = sex;
+    console.log(QuestionAnswers['age'] + " " + QuestionAnswers['sex']);
+    navigation.navigate('2 of 11');
     }
 
    
 
 return (
     <View style={styles.container}>
-        <Text style={styles.text}>why are you seeking therapy?</Text>
+        <Text style={styles.text}>Enter your age.</Text>
         <TextInput style={[styles.textInput1, styles.TextInputFontStyle]}
-        onChangeText={(answer)=>setAnswer(answer)}
-        value={answer}
-        multiline={true}/>
+        onChangeText={(age)=>setAge(age)}
+        value={age}
+        maxLength={2}
+        keyboardType="numeric"
+        multiline={false}/>
+
+<Text style={styles.text}>Enter your sex, as male or female.</Text>
+        <TextInput style={[styles.textInput1, styles.TextInputFontStyle]}
+        onChangeText={(sex)=>setSex(sex)}
+        value={sex}
+        maxLength={6}
+        multiline={false}/>
 
         <Pressable style={styles.button}
         onPress={

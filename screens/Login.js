@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet, TextInput, View, Image, Pressable, Text} from 'react-native';
 import { SimpleLineIcons } from '@expo/vector-icons';
 
-export default function Login({onLogin, username, setUsername, navigation}) {
 
+export default function Login({onLogin, username, setUsername, navigation}) {
 
   return (
     <View style={styles.container}>

@@ -31,7 +31,7 @@ const Location2 = () => {
 
     const renderItem = ({ item }) => {
       
-      const color = item.id === selectedId ? '#A020F0.' : 'black';
+      const color = item.id === selectedId ? 'black' : 'black';
   
       return (
         <Item

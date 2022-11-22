@@ -1,7 +1,6 @@
 import { style } from '@mui/system'
 import React, {useState} from 'react'
 import { View, StyleSheet, Text, TextInput, Pressable } from 'react-native'
-import {ProgressDots} from './ProgressDots'
 import { QuestionAnswers } from './sharedVars'
 
 
@@ -12,12 +11,12 @@ export default function Question2({navigation}) {
     const f2 = () => {
     QuestionAnswers['Q2'] = answer;
       console.log(QuestionAnswers['Q2']);
-      navigation.navigate('Question3');
+      navigation.navigate('4 of 11');
       }
 
 return (
     <View style={styles.container}>
-        <Text style={styles.text}>what do you expect therapy?</Text>
+        <Text style={styles.text}>what do you expect from therapy?</Text>
         <TextInput style={[styles.textInput1, styles.TextInputFontStyle]}
         onChangeText={(answer)=>setAnswer(answer)}
         

@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import { View, StyleSheet, Text, TextInput, Pressable } from 'react-native'
-import {ProgressDots} from './ProgressDots'
 import { QuestionAnswers } from './sharedVars'
 import { getDatabase, ref, push, set } from "firebase/database";
 import { getAuth } from "firebase/auth";
@@ -39,7 +38,7 @@ return (
 
         <Pressable style={styles.button}
         onPress={f10}>
-          <Text style={styles.next}>Next</Text>
+          <Text style={styles.next}>Submit</Text>
         </Pressable>
 
     </View>

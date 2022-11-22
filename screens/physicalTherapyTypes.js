@@ -1,5 +1,6 @@
 import { StyleSheet, Text, Pressable, Image,ScrollView } from 'react-native'
 import React from 'react'
+import { TherapyRequest } from '../assesmentQuestionScreens/sharedVars'
 
 
 const physicalTherapyTypes = ({navigation}) => {
@@ -19,7 +20,8 @@ const physicalTherapyTypes = ({navigation}) => {
         },
         styles.card,
       ]}
-      onPress={() => navigation.navigate('locations')}
+      onPress={() => {navigation.navigate('locations')
+    TherapyRequest['problem'] = 'Alchoholism'; console.log(TherapyRequest['problem'])}}
       >
         <Image style={styles.image} source={require('../images/Beer.jpg')}></Image>
         <Text style={styles.font}> Alchoholics Anonnymous </Text>
@@ -34,7 +36,8 @@ const physicalTherapyTypes = ({navigation}) => {
           },
           styles.card,
         ]}
-      onPress={() => navigation.navigate('locations')}
+      onPress={() => {navigation.navigate('locations')
+    TherapyRequest['problem'] = 'GBV'; console.log(TherapyRequest['GBV'])}}
       >
         <Image style={styles.image} source={require('../images/gbv.jpg')}></Image>
         <Text style={styles.font}> Gender Based Violence</Text>

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, Pressable, Image,ScrollView } from 'react-native'
 import React from 'react'
+import { TherapyRequest } from '../assesmentQuestionScreens/sharedVars'
 
 
 const HomeScreen = ({navigation}) => {
@@ -19,7 +20,8 @@ const HomeScreen = ({navigation}) => {
           styles.card,
         ]}
 
-      onPress={() => navigation.navigate('description')}
+      onPress={() => {navigation.navigate('description')
+        TherapyRequest['mode'] = 'Online Therapy'; console.log['mode']}}
       
       > 
 <Image style={styles.image2} source={require('../online-therapy3.jpg')}></Image>
@@ -35,7 +37,8 @@ const HomeScreen = ({navigation}) => {
         },
         styles.card,
       ]}
-      onPress={() => navigation.navigate('description')}
+      onPress={() => {navigation.navigate('description')
+    TherapyRequest['mode'] = 'Physical therapy'; console.log['mode']}}
       >
         <Image style={styles.image} source={require('../physical-therapy.jpg')}></Image>
         <Text style={styles.font}> Physical therapy </Text>
@@ -50,7 +53,8 @@ const HomeScreen = ({navigation}) => {
           },
           styles.card,
         ]}
-      onPress={() => navigation.navigate('groupTherapy')}
+      onPress={() =>{ navigation.navigate('groupTherapy')
+    TherapyRequest['mode'] = 'Group physical therapy'; console.log['mode']}}
       >
         <Image style={styles.image} source={require('../group-therapy.jpg')}></Image>
         <Text style={styles.font}> Group physical therapy</Text>

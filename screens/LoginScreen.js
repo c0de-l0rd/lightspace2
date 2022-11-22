@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { getDatabase, ref, child, get } from "firebase/database";
 
 
+
 const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,8 +38,6 @@ const LoginScreen = ({navigation}) => {
         console.error(error);
       });
             
-        
-       
     };
 
     const clearInput = ()=> {
@@ -81,8 +80,9 @@ const LoginScreen = ({navigation}) => {
             onPressIn={openRegisterScreen} >
                <Text>Don't have an account? <Text style={{color:"#FF7518" }}>Sign Up</Text></Text> 
             </Pressable>
-
+           
         </View>
+
     )
 }
 const styles = StyleSheet.create({

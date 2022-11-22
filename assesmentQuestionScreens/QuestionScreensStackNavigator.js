@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
+import AgeSex from './AgeSex'
 import Question1 from './Question1';
 import Question2 from './Question2';
 import Question3 from './Question3';
@@ -21,34 +22,37 @@ export default function QuestionScreensStackNavigator() {
   return (
     <Stack.Navigator>
         <Stack.Screen
-        name='Question1'
+        name='1 of 11'
+        component={AgeSex}/>
+        <Stack.Screen
+        name='2 of 11'
         component={Question1}/>
         <Stack.Screen
-        name='Question2'
+        name='3 of 11'
         component={Question2}/>
         <Stack.Screen
-        name='Question3'
+        name='4 of 11'
         component={Question3}/>
         <Stack.Screen
-        name='Question4'
+        name='5 of 11'
         component={Question4}/>
         <Stack.Screen
-        name='Question5'
+        name='6 of 11'
         component={Question5}/>
         <Stack.Screen
-        name='Question6'
+        name='7 of 11'
         component={Question6}/>
         <Stack.Screen
-        name='Question7'
+        name='8 of 11'
         component={Question7}/>
         <Stack.Screen
-        name='Question8'
+        name='9 of 11'
         component={Question8}/>
         <Stack.Screen
-        name='Question9'
+        name='10 of 11'
         component={Question9}/>
         <Stack.Screen
-        name='Question10'
+        name='11 of 11'
         component={Question10}/>
         <Stack.Screen
         name='Tab'

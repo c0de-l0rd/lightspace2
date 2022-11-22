@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import { View, StyleSheet,Pressable, TextInput, Text, Image } from 'react-native'
-import {  Button } from 'react-native-elements';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import {getDatabase, get, ref, set, onValue, push, off, update} from 'firebase/database';
-import Chat from './Chat';
-import Login from './Login';
-import Users from './Users';
-
+import {getDatabase, get, ref, set} from 'firebase/database';
+import { UserName } from '../assesmentQuestionScreens/sharedVars';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -16,7 +11,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [avatar, setAvatar] = useState('');
     const [myData, setMyData] = useState(null);
-    const [selectedUser, setSelectedUser] = useState(null);
+   
 
     const register = ({navigation}) => {
         createUserWithEmailAndPassword(auth, email, password)
@@ -79,8 +74,15 @@ const Register = () => {
           }
 
           
-
+          clearInput();
         }
+
+        const clearInput = ()=> {
+            setEmail('');
+            setPassword('');
+            setName('');
+        }
+    
 
        
 
@@ -90,7 +92,7 @@ const Register = () => {
 <Image style={styles.logo} source={require('../images/logs.png')}></Image>
 
             <TextInput style={styles.textInput}
-                placeholder='Enter your name'
+                placeholder='Enter your user name'
                 placeholderTextColor="#FF7518"
                 label='Name'
                 value={name}
@@ -110,12 +112,6 @@ const Register = () => {
                 value={password} onChangeText={text => setPassword(text)}
                 secureTextEntry
             />
-            {/* <TextInput style={styles.textInput}
-                placeholder='Enter your image url'
-                label='Profile Picture'
-                value = {avatar}
-                onChangeText={text => setAvatar(text)}
-            /> */}
             <Pressable style={({pressed})=> [{
                 borderColor: pressed ? '#1DA1F2' : '#f3f6f4'
             }, styles.button

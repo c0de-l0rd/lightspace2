@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import { View, StyleSheet, Text, TextInput, Pressable } from 'react-native'
-import {ProgressDots} from './ProgressDots'
 import { QuestionAnswers } from './sharedVars'
 
 export default function Question4({navigation}) {
@@ -10,7 +9,7 @@ export default function Question4({navigation}) {
    const f4 = () => {
     QuestionAnswers['Q4'] = answer;
     console.log(QuestionAnswers['Q4']);
-    navigation.navigate('Question5');
+    navigation.navigate('6 of 11');
     }
 
 return (

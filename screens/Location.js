@@ -1,7 +1,8 @@
 import { grey } from "@mui/material/colors";
 import { style } from "@mui/system/Stack/createStack";
 import React, { useState } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, Pressable } from "react-native";
+import { TherapyRequest } from "../assesmentQuestionScreens/sharedVars";
 
 const DATA = [
     {
@@ -21,23 +22,27 @@ const DATA = [
     },
   ];
 
-  const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+  const Item = ({ item, onPress, onPressIn, backgroundColor, textColor }) => (
+    <Pressable onPress={onPress} style={[styles.item, backgroundColor]}
+                onPressIn={onPressIn}>
       <Text style={[styles.title, textColor]}>{[item.loc, item.time]}</Text>
-    </TouchableOpacity>
+
+    </Pressable>
   );
 
-const Location = () => {
+const Location = ({navigation}) => {
     const [selectedId, setSelectedId] = useState(null);
 
     const renderItem = ({ item }) => {
       
-      const color = item.id === selectedId ? '#A020F0' : 'black';
+      const color = item.id === selectedId ? '#FF7518' : 'black';
   
       return (
         <Item
           item={item}
-          onPress={() => setSelectedId(item.id)}
+          onPressIn={() => {setSelectedId(item.id);
+          TherapyRequest['location'] = item.loc; console.log(TherapyRequest['location'])}}
+          onPress={()=> navigation.navigate('description')}
           style={styles.backgroundColor}
           textColor={{ color }}
         />
