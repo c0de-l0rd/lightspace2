@@ -19,6 +19,7 @@ return (
         <TextInput style={[styles.textInput1, styles.TextInputFontStyle]}
         onChangeText={(answer)=>setAnswer(answer)}
         value={answer}
+        maxLength={560}
         multiline={true}/>
 
         <Pressable style={styles.button}
