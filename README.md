@@ -1,4 +1,4 @@
-# lightspace2
+# lightspace
 this app provides the interface for someone seeking psycho social counseling to talk to a therapist through a direct message interface.
 
 how to set up
