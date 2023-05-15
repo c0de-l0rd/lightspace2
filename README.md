@@ -1,5 +1,6 @@
 # lightspace
-this app provides the interface for someone seeking psycho social counseling to talk to a therapist through a direct message interface. the therapist cunicates with their patint using the therapists version of the app called lightspace for therapists.
+this app provides the interface for someone seeking psycho social counseling to talk to a therapist through a direct message interface. the therapist cunicates with their patint using the therapists version of the app called lightspace for therapists that can be found here
+https://github.com/c0de-l0rd/lightTherapists/tree/5bcdf8dd95b8ed31e196a17899b1f8ce8538f1c4
 
 how to set up
 1. clone the project
